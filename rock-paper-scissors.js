@@ -19,32 +19,34 @@ function playerPlay() {
     }
 }
 
-function playRound(computerSelection, playerSelection) {
+function playRound() {
+    let computerSelection = computerPlay();
+    let playerSelection = playerPlay();
+    let winLoss = 0;
+
     if (computerSelection == playerSelection) {
         console.log(`It's a tie! You both picked ${computerSelection}! Please pick again.`);
-        playRound(computerPlay(), playerPlay());
     } else if (computerSelection === 'rock' && playerSelection === 'paper') {
-        console.log('Paper covers rock! You win!')
-        return 1;
+        winLoss = 1;
+        console.log('Paper covers rock! You win!');
     } else if (computerSelection === 'rock' && playerSelection === 'scissors') {
-        console.log('Rock crushes scissors! You lose!')
-        return 0;
+        winLoss = 2;
+        console.log('Rock crushes scissors! You lose!');
     } else if (computerSelection === 'paper' && playerSelection === 'rock') {
-        console.log('Paper covers rock! You lose!')
-        return 0;
+        winLoss = 2;
+        console.log('Paper covers rock! You lose!');
     } else if (computerSelection === 'paper' && playerSelection === 'scissors') {
-        console.log('Scissors cut paper! You win!')
-        return 1;
+        winLoss = 1;
+        console.log('Scissors cut paper! You win!');
     } else if (computerSelection === 'scissors' && playerSelection === 'rock') {
-        console.log('Rock crushes scissors! You win!')
-        return 1;
+        winLoss = 1;
+        console.log('Rock crushes scissors! You win!');
     } else if (computerSelection === 'scissors' && playerSelection === 'paper') {
-        console.log('Scissors cut paper! You lose!')
-        return 0;
-    } else {
-        return 2;
+        winLoss = 2;
+        console.log('Scissors cut paper! You lose!');
     }
 
+    return winLoss;
 }
 
 function game() {
@@ -53,9 +55,15 @@ function game() {
     let losses = 0;
 
     while (i < 5) {
-        console.log(playRound(computerPlay(),playerPlay()));
-        ++i;
-
+        let result = playRound();
+        
+        if (result == 1) {
+            ++wins;
+            ++i;
+        } else if (result == 2) {
+            ++losses;
+            ++i;
+        }
     }
 
     if (wins > losses) {
@@ -63,7 +71,6 @@ function game() {
     } else if (losses > wins) {
         console.log(`Sorry! You lose, ${wins} games to ${losses}.`);
     }
-
 }
 
 game();

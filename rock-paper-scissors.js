@@ -19,9 +19,9 @@ function playerPlay() {
     }
 }
 
-function playRound() {
-    let computerSelection = computerPlay();
-    let playerSelection = playerPlay();
+function playRound(computerSelection, playerSelection) {
+    //let computerSelection = computerPlay();
+    //let playerSelection = playerPlay();
     let winLoss = 0;
 
     if (computerSelection == playerSelection) {
@@ -55,7 +55,7 @@ function game() {
     let losses = 0;
 
     while (i < 5) {
-        let result = playRound();
+        let result = playRound(computerPlay(), playerPlay());
         
         if (result == 1) {
             ++wins;

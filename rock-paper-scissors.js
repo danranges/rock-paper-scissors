@@ -20,8 +20,6 @@ function playerPlay() {
 }
 
 function playRound(computerSelection, playerSelection) {
-    //let computerSelection = computerPlay();
-    //let playerSelection = playerPlay();
     let winLoss = 0;
 
     if (computerSelection == playerSelection) {
@@ -50,19 +48,16 @@ function playRound(computerSelection, playerSelection) {
 }
 
 function game() {
-    let i = 0;
     let wins = 0;
     let losses = 0;
 
-    while (i < 5) {
+    while ((wins + losses) < 5) {
         let result = playRound(computerPlay(), playerPlay());
         
         if (result == 1) {
             ++wins;
-            ++i;
         } else if (result == 2) {
             ++losses;
-            ++i;
         }
     }
 
